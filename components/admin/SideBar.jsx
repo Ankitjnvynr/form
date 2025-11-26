@@ -71,13 +71,24 @@ const adminNavItems = [
     
   },
   {
-    title: "Teacher Reports", // Admin can see reports
+    title: "Teacher Appraisals", // Admin can see reports
     path: "/teacher-reports",
+    subTabs :[
+      {title:"All ", path:"/teacher-reports"},
+      {title:"New ", path:"/teacher-reports/new"},
+    ]
   },
   
 ];
 const userNavItems = [
-  teacherReportItem, // User can fill the report
+  {
+    title: "Teacher Appraisals", // Admin can see reports
+    path: "/teacher-reports",
+    subTabs :[
+      {title:"All ", path:"/teacher-reports"},
+      {title:"New ", path:"/teacher-reports/new"},
+    ]
+  },
   
 ];
 
@@ -86,7 +97,7 @@ const { user, logout } = useAuth();
 useEffect(() => {
   if (user?.role === "superadmin") {
     setNavItems(superadminNavItems);
-  } else if (user?.role === "admin") {
+  } else if (user?.role === "school") {
     setNavItems(adminNavItems);
   } else if (user) { // Check if user exists to set userNavItems
     setNavItems(userNavItems);
