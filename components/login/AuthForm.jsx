@@ -76,7 +76,7 @@ export default function AuthWithImage() {
     // If the user is already authenticated, redirect them from the login page.
     if (isAuthenticated && !authLoading) {
       const isAdmin = user?.role === "admin" || user?.role === "superadmin";
-      router.push(isAdmin ? "/school-inspections" : "/teacher-report");
+      router.push(isAdmin ? "/school-inspections" : "/teacher-reports");
     }
   }, [isAuthenticated, authLoading, user, router]);
 
@@ -133,7 +133,7 @@ export default function AuthWithImage() {
             ) {
               router.navi("/school-inspections");
             } else {
-              router.push("/teacher-report");
+              router.push("/teacher-reports");
             }
           } else {
             setMessageType("error");
@@ -162,7 +162,7 @@ export default function AuthWithImage() {
           ) {
             router.push("/school-inspections");
           } else {
-            router.push("/teacher-report");
+            router.push("/teacher-reports");
           }
           return
         } else if (loginResult.code === 403) {
@@ -309,7 +309,7 @@ export default function AuthWithImage() {
                     setMessage("Logged in successfully with Google!");
                     // Redirect based on user role
                     const isAdmin = loginResult.user.role === "admin" || loginResult.user.role === "superadmin";
-                    router.push(isAdmin ? "/school-inspections": "/teacher-report");
+                    router.push(isAdmin ? "/school-inspections": "/teacher-reports");
                   } else {
                     setMessageType("error");
                     setMessage(loginResult?.error || "Google login failed. Please try again.");
